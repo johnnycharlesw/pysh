@@ -6,10 +6,12 @@ import os, sys
 import promptgen
 import messages
 import pysh_builtins
+import getpass
 prompt = ""
 exitcode = 0
 
-if os.getenv("USER") == "root":
+priviliged_users = ["root", "Administrator", "SYSTEM", "TrustedInstaller"]
+if getpass.getuser() in priviliged_users:
     print("""
     Warning: this terminal is running as the superuser.
     EagletOS comes with absolutely no warranty whatsoever, so if you mess up something, the EagletOS developers are not responsible.

@@ -9,7 +9,8 @@ def promptgen():
     # Get the prompt ending character
 
     promptend = "$"
-    if username == "root" or username == "SYSTEM":
+    priviliged_users = ["root", "Administrator", "SYSTEM", "TrustedInstaller"]
+    if username in priviliged_users:
         promptend = "#"
 
     # Get the current working directory
