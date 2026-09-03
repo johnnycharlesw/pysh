@@ -18,7 +18,7 @@ if getpass.getuser() in priviliged_users:
     """)
 else:
     print("""
-    This terminal is not running as root, but just a reminder, not every command needs to be prefixed with `sudo` or `pkexec`.
+    This terminal is not running as the superuser, but just a reminder, not every command needs to be prefixed with `sudo` or `pkexec`.
     """)
 
 while True:
