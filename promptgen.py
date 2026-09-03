@@ -1,14 +1,15 @@
 import os, sys
 import socket
+import getpass
 
 prompt = ""
-username = os.getenv("USER")
+username = getpass.getuser()
 
 def promptgen():
     # Get the prompt ending character
 
     promptend = "$"
-    if username == "root":
+    if username == "root" or username == "SYSTEM":
         promptend = "#"
 
     # Get the current working directory
