@@ -50,7 +50,7 @@ while True:
             print("No, EagletOS does not have drive letters, it is based on Debian.")
             continue
         elif command.split(" ")[0] == "cd":
-            exitcode = pysh_builtins.cd(command)
+            exitcode = pysh_builtins.cd(command) 
             continue
         elif command == "pwd":
             exitcode = pysh_builtins.pwd()
@@ -64,7 +64,11 @@ while True:
             lexed = shlex.split(command)
             exitcode = subprocess.call(lexed)
         except FileNotFoundError:
-            print(messages.command_not_found)
+            try:
+                eval(command)
+            except BaseException:
+                print("Command not found, or an exception occured.")
+                exitcode=1
             exitcode = -1
 
         
