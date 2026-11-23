@@ -4,12 +4,12 @@ import getpass
 
 prompt = ""
 username = getpass.getuser()
+priviliged_users = ["root", "Administrator", "SYSTEM", "TrustedInstaller"]
 
 def promptgen():
     # Get the prompt ending character
 
     promptend = "$"
-    priviliged_users = ["root", "Administrator", "SYSTEM", "TrustedInstaller"]
     if username in priviliged_users:
         promptend = "#"
 
