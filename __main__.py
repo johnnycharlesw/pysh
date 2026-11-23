@@ -9,6 +9,7 @@ import pysh_builtins
 import getpass
 prompt = ""
 exitcode = 0
+displayexitcodes = False
 
 priviliged_users = ["root", "Administrator", "SYSTEM", "TrustedInstaller"]
 if getpass.getuser() in priviliged_users:
@@ -35,12 +36,6 @@ while True:
         elif command == "history | sh":
             print("Don't pipe the roman empire into sh-you might regret it.")
             continue
-        elif command.split(" ")[0] == "dd":
-            print("Don't even think about using the Data Destroyer. If you need to wipe an old SSD, ask your parent to do so.")
-            continue
-        elif command.startswith("rm -rf /") or command.startswith("sudo rm -rf /") or command.startswith("pkexec rm -rf /"):
-            print("Do you think wiping the main disk is a good idea? If you were in fact not intending that, use a relative path.")
-            continue
         elif command.startswith("abracadabra"):
             print("Does this look like magic to you?")
             continue
@@ -65,16 +60,15 @@ while True:
             exitcode = subprocess.call(lexed)
         except FileNotFoundError:
             try:
-                eval(command)
-            except BaseException:
+                exec(command)
+                exitcode = 0
+            except Exception:
                 print("Command not found, or an exception occured.")
-                exitcode=1
-            exitcode = -1
-
-        
+                exitcode=-1
 
         # Display exit code
-        # print(f"Command `{command}` exited with code {exitcode}")
+        if displayexitcodes:
+            print(f"Command `{command}` exited with code {exitcode}")
     except KeyboardInterrupt:
         print("Keyboard interrupt!")
         continue
