@@ -16,18 +16,6 @@ priviliged_users = promptgen.priviliged_users
 
 show_prompt = True
 
-def display_message(islogin):
-    if not islogin:
-        return
-    if getpass.getuser() in priviliged_users:
-        print("""
-        Warning: this terminal is running as the superuser.
-        EagletOS comes with absolutely no warranty whatsoever, so if you mess up something, the EagletOS developers are not responsible.
-        """)
-    else:
-        print("""
-        This terminal is not running as the superuser, but just a reminder, not every command needs to be prefixed with `sudo` or `pkexec`.
-        """)
 
 def run_startup_scripts(home, islogin):
     # If this is a login shell, load the "profile" scripts, otherwise the "pyshrc" scripts
@@ -73,8 +61,6 @@ def main():
         pysh_builtins.home, # home directory
         get_is_interactive(args) # graphical command prompts count as login shells here (weird, right?)
     )
-
-    display_message(get_is_interactive(args))
 
     if (not get_is_interactive(args)) and args.COMMAND_FILE is not None:
         execute_script(args.COMMAND_FILE)

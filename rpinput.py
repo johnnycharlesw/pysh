@@ -74,11 +74,13 @@ def rp_input(prompt):
             if not buffer:
                 raise EOFError
         elif key == "LEFT":
-            cursor = max(0, cursor - 1)
-            print("\033[1D", end="", flush=True)
+            if cursor > 0:
+                cursor -= 1
+                print("\033[1D", end="", flush=True)
         elif key == "RIGHT":
-            cursor = min(len(buffer), cursor + 1)
-            print("\033[1C", end="", flush=True)
+            if cursor < len(buffer):
+                cursor += 1
+                print("\033[1C", end="", flush=True)
         elif key == "UP":
             if current_index > 0:
                 current_index -= 1
