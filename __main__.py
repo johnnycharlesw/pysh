@@ -7,6 +7,8 @@ import messages
 import pysh_builtins
 import getpass
 import argparser
+import io
+import rpinput
 from execution import execute_posix, execute_python, execute_script, run_command
 exitcode = 0
 displayexitcodes = False
@@ -52,7 +54,7 @@ def read_prompt():
         prompt = promptgen.promptgen()
     else:
         prompt = ""
-    command = input(prompt)
+    command = rpinput.rp_input(prompt)
     return command
 
 def get_is_interactive(args):

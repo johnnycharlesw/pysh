@@ -10,5 +10,11 @@ pwd
 # Do some Python stuff
 print("Hello World!")
 
+# Test variables
+print("Testing variables...")
+x=10
+print("x should = 10")
+print(f"x = {x}")
+
 # Exit
 exit
