@@ -78,9 +78,6 @@ def main():
                 continue
             elif command.endswith("make me a sandwich"):
                 print("Maybe you didn't mean to trigger GNU Make, but I guess it will get compiled anyways.")
-            # elif command.endswith("rm -rf C:"):
-            #     print("No, EagletOS does not have drive letters, it is based on Debian.")
-            #     continue
             elif command.split(" ")[0] == "alias":
                 exitcode = pysh_builtins.alias(command)
                 continue
